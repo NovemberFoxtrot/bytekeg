@@ -21,12 +21,13 @@ func main() {
 		panic(err)
 	}
 
-	// Insert rows
-	r.Db("test").Table("Table1").Insert(map[string]interface{}{"id": 6, "g1": 1, "g2": 1, "num": 15}).Exec(session)
+	r.Db("test").TableCreate("Table1").Exec(session)
+	r.Db("test").Table("Table1").Insert(map[string]interface{}{"id": 6, "total": 1, "correct": 1, "incorrect": 15}).Exec(session)
 
-	// Test query
 	var response interface{}
+
 	query := r.Db("test").Table("Table1").Get(6)
+
 	r, err := query.RunRow(session)
 
 	if err != nil {
