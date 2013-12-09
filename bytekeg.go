@@ -6,6 +6,11 @@ import (
 	"time"
 )
 
+type datum struct {
+	count int
+	data  []string
+}
+
 func main() {
 
 	var session *r.Session
