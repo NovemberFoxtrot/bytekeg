@@ -3,6 +3,7 @@ package main
 import (
 	r "github.com/dancannon/gorethink"
 	"log"
+	"math/rand"
 	"time"
 )
 
@@ -12,6 +13,7 @@ type datum struct {
 }
 
 func main() {
+	rand.Seed(time.Now().UTC().UnixNano())
 
 	var session *r.Session
 
@@ -27,14 +29,14 @@ func main() {
 	}
 
 	r.Db("test").TableCreate("Table1").Exec(session)
-
-	for i := 0; i < 100; i++ {
-		r.Db("test").Table("Table1").Insert(map[string]interface{}{"id": i, "total": 1, "correct": 1, "incorrect": 15}).Exec(session)
+/*
+	for i := 0; i < 20000; i++ {
+		r.Db("test").Table("Table1").Insert(map[string]interface{}{"id": i, "total": rand.Intn(1000), "correct": 1, "incorrect": 15}).Exec(session)
 	}
-
+*/
 	var response []interface{}
 
-	query := r.Db("test").Table("Table1").Between(1, 10).OrderBy("id")
+	query := r.Db("test").Table("Table1").OrderBy("total")
 
 	rows, err := query.Run(session)
 
