@@ -27,19 +27,22 @@ func main() {
 	}
 
 	r.Db("test").TableCreate("Table1").Exec(session)
-	r.Db("test").Table("Table1").Insert(map[string]interface{}{"id": 6, "total": 1, "correct": 1, "incorrect": 15}).Exec(session)
 
-	var response interface{}
+	for i := 0; i < 100; i++ {
+		r.Db("test").Table("Table1").Insert(map[string]interface{}{"id": i, "total": 1, "correct": 1, "incorrect": 15}).Exec(session)
+	}
 
-	query := r.Db("test").Table("Table1").Get(6)
+	var response []interface{}
 
-	r, err := query.RunRow(session)
+	query := r.Db("test").Table("Table1").Between(1, 10).OrderBy("id")
+
+	rows, err := query.Run(session)
 
 	if err != nil {
 		panic(err)
 	}
 
-	err = r.Scan(&response)
+	err = rows.ScanAll(&response)
 
 	log.Println(response)
 }
