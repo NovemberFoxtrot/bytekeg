@@ -46,8 +46,6 @@ func main() {
 		objects = append(objects, object)
 	}
 
-	// table.Insert([]interface{}{map[string]interface{}{"name": "Joe"}, map[string]interface{}{"name": "Paul"}}).RunWrite(sess)
-
 	log.Println(objects)
 
 	query := r.Db("test").Table("Table1").Replace(objects)
