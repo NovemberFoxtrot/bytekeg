@@ -31,8 +31,15 @@ func main() {
 
 	r.Db("test").TableCreate("Table1").Exec(session)
 
-	objects := make([]interface{}, 0)
+	// objects := make([]interface{}, 0)
 
+	objects := []interface{}{
+		map[string]interface{}{"num": 0, "id": 1, "g2": 1, "g1": 1},
+		map[string]interface{}{"num": 5, "id": 2, "g2": 2, "g1": 2},
+		map[string]interface{}{"num": 10, "id": 3, "g2": 2, "g1": 3},
+	}
+
+/*
 	for i := 1; i < 10; i++ {
 		total := rand.Intn(1000)
 
@@ -45,10 +52,10 @@ func main() {
 
 		objects = append(objects, object)
 	}
-
+*/
 	log.Println(objects)
 
-	query := r.Db("test").Table("Table1").Replace(objects)
+	query := r.Db("test").Table("Table1").Insert(objects)
 
 	rowz, err := query.Run(session)
 
