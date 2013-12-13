@@ -39,20 +39,6 @@ func main() {
 		map[string]interface{}{"num": 10, "id": 3, "g2": 2, "g1": 3},
 	}
 
-/*
-	for i := 1; i < 10; i++ {
-		total := rand.Intn(1000)
-
-		object := map[string]interface{}{
-			"id":        i,
-			"total":     total,
-			"correct":   total,
-			"incorrect": total,
-		}
-
-		objects = append(objects, object)
-	}
-*/
 	log.Println(objects)
 
 	query := r.Db("test").Table("Table1").Insert(objects)
