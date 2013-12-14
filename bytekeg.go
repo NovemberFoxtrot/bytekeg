@@ -34,10 +34,14 @@ func main() {
 	// objects := make([]interface{}, 0)
 
 	objects := []interface{}{
-		map[string]interface{}{"num": 0, "id": 1, "g2": 1, "g1": 1},
-		map[string]interface{}{"num": 5, "id": 2, "g2": 2, "g1": 2},
-		map[string]interface{}{"num": 10, "id": 3, "g2": 2, "g1": 3},
+		map[string]interface{}{"num": 0, "id": 10, "g2": 1, "g1": 1},
+		map[string]interface{}{"num": 5, "id": 20, "g2": 2, "g1": 2},
+		map[string]interface{}{"num": 10, "id": 30, "g2": 2, "g1": 3},
 	}
+
+	row :=	map[string]interface{}{"num": 0, "id": 100, "g2": 1, "g1": 6771}
+
+	objects = append(objects, row)
 
 	log.Println(objects)
 
