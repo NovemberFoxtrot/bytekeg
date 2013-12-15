@@ -39,7 +39,7 @@ func main() {
 		map[string]interface{}{"num": 10, "id": 30, "g2": 2, "g1": 3},
 	}
 
-	row :=	map[string]interface{}{"num": 0, "id": 100, "g2": 1, "g1": 6771}
+	row :=	map[string]interface{}{"num": 0, "id": 1010, "g2": 1, "g1": 6771}
 
 	objects = append(objects, row)
 
