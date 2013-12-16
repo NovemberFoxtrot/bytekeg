@@ -31,8 +31,6 @@ func main() {
 
 	r.Db("test").TableCreate("Table1").Exec(session)
 
-	// objects := make([]interface{}, 0)
-
 	objects := []interface{}{
 		map[string]interface{}{"num": 0, "id": 10, "g2": 1, "g1": 1},
 		map[string]interface{}{"num": 5, "id": 20, "g2": 2, "g1": 2},
