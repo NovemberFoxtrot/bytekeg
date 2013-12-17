@@ -31,29 +31,24 @@ func main() {
 
 	r.Db("test").TableCreate("Table1").Exec(session)
 
-	objects := []interface{}{
-		map[string]interface{}{"num": 0, "id": 10, "g2": 1, "g1": 1},
-		map[string]interface{}{"num": 5, "id": 20, "g2": 2, "g1": 2},
-		map[string]interface{}{"num": 10, "id": 30, "g2": 2, "g1": 3},
+	objects := []interface{}{}
+
+	for i := 1100; i < 2200; i++ {
+		row := map[string]interface{}{"id": i, "g1": 6771}
+		objects = append(objects, row)
 	}
-
-	row :=	map[string]interface{}{"num": 0, "id": 1010, "g2": 1, "g1": 6771}
-
-	objects = append(objects, row)
 
 	log.Println(objects)
 
 	query := r.Db("test").Table("Table1").Insert(objects)
 
-	rowz, err := query.Run(session)
-
-	log.Println(rowz)
+	_, err = query.Run(session)
 
 	if err != nil {
 		panic(err)
 	}
 
-	query = r.Db("test").Table("Table1").Between(1, 10).OrderBy("id")
+	query = r.Db("test").Table("Table1").OrderBy("id")
 
 	rows, err := query.Run(session)
 
