@@ -90,7 +90,7 @@ func main() {
 		panic(err)
 	}
 
-	r.Db("test").TableCreate("Table1").Exec(session)
+	r.Db("test").TableCreate("test").Exec(session)
 
 	objects := []interface{}{}
 
